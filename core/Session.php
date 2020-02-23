@@ -57,49 +57,4 @@ class Session
     {
         return $this->get('_authenticated', false);
     }
-
-    public function run()
-    {
-        $params = $this->router->resolve($this->request->getPathInfo());
-        if($params === false) {
-            // todo-A
-        }
-
-        $controller = $params['controller'];
-        $action = $params['action'];
-
-        $this->runAction($controller, $action, $params);
-
-        $this->response->send();
-    }
-
-    public function runAction($controller_name, $action, $params = array())
-    {
-        $controller_class = ucfirst($controller_name) .'Controller';
-
-        $controller = $this->findController($controller_class);
-        if($controller === false){
-            // todo-b
-        }
-
-        $content = $controller->run($action, $params);
-        $this->response->setContent($content);
-    }
-
-    protected function findController($controller_class)
-    {
-        if(!class_exists($controller_class)){
-            $controller_file = $this->getControllerDir() . '/' .$controller_class .'.php';
-            if(!is_readable($controller_file)){
-                return false;
-            }else{
-                require_once Rcontroller_file;
-                
-                if(!class_exists($controller_class)){
-                    return false;
-                }
-            }
-        }
-        return new $controller_class($this);
-    }
 }
