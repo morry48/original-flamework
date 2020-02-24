@@ -7,14 +7,14 @@ class StatusRepository extends DbRepository
         $now = new DateTime();
 
         $sql ="
-            INSERT INTO status(user_id, body, create_at)
-                VALUE(:user_id, :body, :create_at)
+            INSERT INTO status(user_id, body, created_at)
+                VALUE(:user_id, :body, :created_at)
         ";
 
-        $stmt = $this->excute($sql, array(
+        $stmt = $this->execute($sql, array(
             ':user_id'   => $user_id,
             ':body'      => $body,
-            ':create_at' => $now->format('Y-m-d H:i:s'),
+            ':created_at' => $now->format('Y-m-d H:i:s'),
         ));
     }
 
