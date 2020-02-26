@@ -17,7 +17,7 @@
             <a href="<?php echo $base_url; ?>/account">アカウント</a>
             <?php else: ?>
             <a href="<?php echo $base_url; ?>/account/signin">ログイン</a>
-            <a href="<?php echo $base_url; ?>/signup">アカウント登録</a>
+            <a href="<?php echo $base_url; ?>/account/signup">アカウント登録</a>
             <?php endif; ?>
         </p>
     </div>
